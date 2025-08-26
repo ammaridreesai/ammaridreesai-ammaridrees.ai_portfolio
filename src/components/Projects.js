@@ -1,7 +1,7 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Github, ExternalLink, Star } from 'lucide-react'
+import { ExternalLink, Star } from 'lucide-react'
 import { portfolioContent } from '../../content/content'
 
 const containerVariants = {

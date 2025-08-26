@@ -9,15 +9,16 @@ export async function GET(req: NextRequest) {
 
     const filePath = path.join(process.cwd(), 'resume', 'Ammar_Resume.pdf')
     const file = await fs.readFile(filePath)
+    const body = new Uint8Array(file)
 
-    return new Response(file, {
+    return new Response(body, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': `${download ? 'attachment' : 'inline'}; filename="Ammar_Resume.pdf"`,
         'Cache-Control': 'public, max-age=0, must-revalidate',
       },
     })
-  } catch (error) {
+  } catch {
     return new Response('Resume not found', { status: 404 })
   }
 }

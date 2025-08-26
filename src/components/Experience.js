@@ -43,7 +43,7 @@ export default function Experience() {
         </motion.h2>
 
         <div className="space-y-8">
-          {experience.map((job, index) => (
+          {experience.map((job) => (
             <motion.div
               key={job.id}
               className="relative pl-8 pb-8"

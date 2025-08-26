@@ -1,7 +1,7 @@
 'use client'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Mail, Github, Linkedin, MapPin, Phone } from 'lucide-react'
+import { Mail, Github, Linkedin, MapPin } from 'lucide-react'
 import { portfolioContent } from '../../content/content'
 
 const containerVariants = {
@@ -48,14 +48,14 @@ export default function Contact() {
           className="text-4xl md:text-5xl font-bold mb-8"
           variants={itemVariants}
         >
-          Let's <span className="gradient-text">Connect</span>
+          Let&apos;s <span className="gradient-text">Connect</span>
         </motion.h2>
 
         <motion.p
           className="text-lg text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto"
           variants={itemVariants}
         >
-          I'm always open to discussing new opportunities, creative ideas, or just having a chat about technology and design.
+          I&apos;m always open to discussing new opportunities, creative ideas, or just having a chat about technology and design.
         </motion.p>
 
         <motion.div

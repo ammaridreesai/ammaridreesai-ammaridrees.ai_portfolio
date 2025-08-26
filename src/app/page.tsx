@@ -1,5 +1,6 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
+import type { Transition } from 'framer-motion'
 import AnimatedBackground from '../components/AnimatedBackground'
 import ScrollProgress from '../components/ScrollProgress'
 import ThemeToggle from '../components/ThemeToggle'
@@ -16,7 +17,7 @@ const pageVariants = {
   out: { opacity: 0 }
 }
 
-const pageTransition = {
+const pageTransition: Transition = {
   type: 'tween',
   ease: 'anticipate',
   duration: 0.5
