@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail, Phone, MessageCircle } from 'lucide-react'
+import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
 import { portfolioContent } from '../../content/content'
 import avatarImage from '../assets/ammar.jpeg'
