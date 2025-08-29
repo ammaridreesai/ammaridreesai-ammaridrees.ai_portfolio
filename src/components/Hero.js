@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { ArrowDown, Github, Linkedin, Mail, Phone } from 'lucide-react'
+import { ArrowDown, Github, Linkedin, Mail, Phone, Download, Eye } from 'lucide-react'
 import Image from 'next/image'
 import { portfolioContent } from '../../content/content'
 import avatarImage from '../assets/ammar.jpeg'
@@ -29,6 +29,7 @@ const itemVariants = {
 export default function Hero() {
   const { personal } = portfolioContent
   const [typedName, setTypedName] = useState('');
+  
   useEffect(() => {
     let current = 0;
     const interval = setInterval(() => {
@@ -38,6 +39,38 @@ export default function Hero() {
     }, 120);
     return () => clearInterval(interval);
   }, [personal.name]);
+
+  // Function to handle CV viewing with error handling
+  const handleViewCV = () => {
+    try {
+      // Try opening in new tab first
+      window.open('/Ammar_Resume.pdf', '_blank');
+    } catch (error) {
+      console.error('Error opening CV:', error);
+      // Fallback: try direct navigation
+      window.location.href = '/Ammar_Resume.pdf';
+    }
+  };
+
+  // Function to handle CV download with error handling
+  const handleDownloadCV = () => {
+    try {
+      // Create a download link
+      const link = document.createElement('a');
+      link.href = '/Ammar_Resume.pdf';
+      link.download = 'Ammar_Resume.pdf';
+      link.target = '_blank';
+      
+      // Append to body, click, and remove
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading CV:', error);
+      // Fallback: open in new tab
+      window.open('/Ammar_Resume.pdf', '_blank');
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center relative px-4">
@@ -63,6 +96,7 @@ export default function Hero() {
             priority
           />
         </motion.div>
+        
         <motion.h1
           className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
           variants={itemVariants}
@@ -125,26 +159,25 @@ export default function Hero() {
             LinkedIn
           </motion.a>
 
-          <motion.a
-            href="/Ammar_Resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            onClick={handleViewCV}
             className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
+            <Eye size={20} />
             View CV
-          </motion.a>
+          </motion.button>
 
-          <motion.a
-            href="/Ammar_Resume.pdf"
-            download
+          <motion.button
+            onClick={handleDownloadCV}
             className="flex items-center gap-2 px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-full font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
           >
+            <Download size={20} />
             Download CV
-          </motion.a>
+          </motion.button>
         </motion.div>
 
         <motion.div
@@ -155,12 +188,13 @@ export default function Hero() {
             className="animate-bounce cursor-pointer"
             animate={{ y: [0, 20, 0], rotate: [0, 10, -10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
             <ArrowDown size={32} className="text-gray-400 dark:text-gray-500" />
           </motion.div>
         </motion.div>
       </motion.div>
+
       {/* Floating WhatsApp and Phone icons */}
       <motion.div
         className="fixed bottom-6 right-6 z-50 flex flex-col gap-4"
@@ -192,6 +226,7 @@ export default function Hero() {
           <Phone size={28} className="text-white" />
         </a>
       </motion.div>
+      
       <style jsx>{`
         .blinking-cursor {
           display: inline-block;
