@@ -45,10 +45,13 @@ export default function Contact() {
         animate={isInView ? "visible" : "hidden"}
       >
         <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-8"
+          className="text-4xl md:text-5xl font-bold text-center mb-8"
           variants={itemVariants}
+          initial={{ rotate: 5, scale: 0.95, opacity: 0 }}
+          animate={isInView ? { rotate: 0, scale: 1, opacity: 1 } : { rotate: 5, scale: 0.95, opacity: 0 }}
+          transition={{ duration: 0.8, ease: 'backOut' }}
         >
-          Let&apos;s <span className="gradient-text">Connect</span>
+          <span className="inline-block">Let&apos;s <span className="gradient-text">Connect</span></span>
         </motion.h2>
 
         <motion.p
@@ -67,10 +70,14 @@ export default function Contact() {
             className="flex flex-col items-center gap-3 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg group"
             variants={iconVariants}
             whileHover="hover"
+            initial={{ scale: 0.95, rotate: -2, opacity: 0 }}
+            animate={isInView ? { scale: 1, rotate: 0, opacity: 1 } : { scale: 0.95, rotate: -2, opacity: 0 }}
+            transition={{ duration: 0.7, type: 'spring', stiffness: 120 }}
           >
             <motion.div
-              className="p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white"
-              whileHover={{ boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)" }}
+              className="p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white shimmer-icon"
+              whileHover={{ boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)", scale: 1.2 }}
+              transition={{ duration: 0.5 }}
             >
               <Mail size={24} />
             </motion.div>

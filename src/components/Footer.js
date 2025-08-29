@@ -17,8 +17,8 @@ export default function Footer() {
         >
           Built with 
           <motion.span
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 1, repeat: Infinity }}
+            animate={{ scale: [1, 1.3, 1], y: [0, -8, 0] }}
+            transition={{ duration: 1.2, repeat: Infinity }}
           >
             <Heart size={16} className="text-red-500" fill="currentColor" />
           </motion.span>
@@ -29,7 +29,7 @@ export default function Footer() {
           className="text-sm text-gray-500"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
           © 2024 {personal.name}. All rights reserved.
         </motion.p>

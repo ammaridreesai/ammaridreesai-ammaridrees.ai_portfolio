@@ -46,10 +46,13 @@ export default function Projects() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-                          <motion.div
+            <motion.div
               key={project.id}
               className={`relative group ${project.featured ? 'md:col-span-2' : ''}`}
               variants={itemVariants}
+              initial={{ scale: 0.9, rotate: -3, opacity: 0 }}
+              animate={isInView ? { scale: 1, rotate: 0, opacity: 1 } : { scale: 0.9, rotate: -3, opacity: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 + index * 0.1, type: 'spring', stiffness: 120 }}
             >
               <motion.div
                 className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg"
@@ -75,9 +78,18 @@ export default function Projects() {
                   <motion.img
                     src={typeof project.image === 'string' ? project.image : (project.image?.src || project.image)}
                     alt={project.title}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover group-hover:shimmer-img"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
+                  />
+                  <motion.div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 shimmer"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.7 }}
+                    style={{
+                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>

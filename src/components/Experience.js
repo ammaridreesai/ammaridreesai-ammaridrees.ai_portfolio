@@ -48,8 +48,10 @@ export default function Experience() {
               key={job.id}
               className="relative pl-8 pb-8"
               variants={itemVariants}
-              whileHover={{ x: 10 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              initial={{ scale: 0.95, rotate: -2, opacity: 0 }}
+              animate={isInView ? { scale: 1, rotate: 0, opacity: 1 } : { scale: 0.95, rotate: -2, opacity: 0 }}
+              transition={{ duration: 0.7, type: 'spring', stiffness: 120 }}
+              whileHover={{ x: 10, scale: 1.03, boxShadow: '0 8px 32px rgba(99,102,241,0.15)' }}
             >
               {/* Timeline Line */}
               <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-purple-600" />
@@ -90,8 +92,8 @@ export default function Experience() {
                   {job.technologies.map((tech, techIndex) => (
                     <motion.span
                       key={tech}
-                      className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium"
-                      whileHover={{ scale: 1.1 }}
+                      className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-800 dark:text-blue-300 rounded-full text-sm font-medium shimmer-tag"
+                      whileHover={{ scale: 1.2, backgroundColor: '#a21caf', color: '#fff' }}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                       transition={{ delay: 0.5 + techIndex * 0.1 }}

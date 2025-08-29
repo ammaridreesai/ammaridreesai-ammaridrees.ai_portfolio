@@ -39,6 +39,9 @@ export default function About() {
         <motion.h2
           className="text-4xl md:text-5xl font-bold text-center mb-16"
           variants={itemVariants}
+          initial={{ rotate: -5, scale: 0.95, opacity: 0 }}
+          animate={isInView ? { rotate: 0, scale: 1, opacity: 1 } : { rotate: -5, scale: 0.95, opacity: 0 }}
+          transition={{ duration: 0.8, ease: 'backOut' }}
         >
           About <span className="gradient-text">Me</span>
         </motion.h2>
@@ -62,13 +65,28 @@ export default function About() {
                   <span className="font-medium">{skill.name}</span>
                   <span className="text-sm text-gray-500">{skill.level}%</span>
                 </div>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
                   <motion.div
-                    className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full"
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full shimmer-bar"
                     initial={{ width: 0 }}
                     animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
                     transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                  />
+                    style={{ position: 'relative' }}
+                  >
+                    <motion.div
+                      className="absolute top-0 left-0 h-full w-full shimmer"
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                      transition={{ duration: 1.2, delay: 0.7 + index * 0.1, repeat: Infinity, repeatType: 'loop' }}
+                      style={{
+                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)',
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 2,
+                        pointerEvents: 'none',
+                      }}
+                    />
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
